@@ -37,6 +37,7 @@
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.individualTab = new System.Windows.Forms.TabPage();
             this.teamTab = new System.Windows.Forms.TabPage();
+            this.progressOfApplicationBar = new System.Windows.Forms.ProgressBar();
             this.tabControl1.SuspendLayout();
             this.runProTab.SuspendLayout();
             this.results.SuspendLayout();
@@ -56,6 +57,7 @@
             // 
             // runProTab
             // 
+            this.runProTab.Controls.Add(this.progressOfApplicationBar);
             this.runProTab.Controls.Add(this.getFileButton);
             this.runProTab.Controls.Add(this.fileLabel);
             this.runProTab.Controls.Add(this.calcScores);
@@ -143,6 +145,14 @@
             this.teamTab.Text = "Team";
             this.teamTab.UseVisualStyleBackColor = true;
             // 
+            // progressOfApplicationBar
+            // 
+            this.progressOfApplicationBar.BackColor = System.Drawing.SystemColors.Menu;
+            this.progressOfApplicationBar.Location = new System.Drawing.Point(6, 318);
+            this.progressOfApplicationBar.Name = "progressOfApplicationBar";
+            this.progressOfApplicationBar.Size = new System.Drawing.Size(551, 40);
+            this.progressOfApplicationBar.TabIndex = 3;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -171,6 +181,7 @@
         private System.Windows.Forms.Button calcScores;
         private System.Windows.Forms.Label fileLabel;
         private System.Windows.Forms.Button getFileButton;
+        private System.Windows.Forms.ProgressBar progressOfApplicationBar;
     }
 }
 
