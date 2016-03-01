@@ -21,6 +21,7 @@ namespace GeoApp
         public string tie_breaker_key; // Houses the string for a tie_breaker
         public string[] student_answer_bank = new string[1000]; // Keeps all student answers in memory
         public int number_of_students; // Total amount of students
+        public int processed_students; // Current amt of processed student scores.
 
         public Form1()
         {
@@ -31,8 +32,8 @@ namespace GeoApp
         {
             if (input_file_available)
             {
+                processed_students = 0;
                 CalculateWithProgress();
-                // MessageBox.Show("Calculating Results from File: " + input_file_name);
             }
             else
             {
@@ -130,6 +131,16 @@ namespace GeoApp
                     progressOfApplicationBar.PerformStep();
                 }
             }
+
+            // Check if everyone was processed correctly
+            if (processed_students != number_of_students)
+            {
+                MessageBox.Show("ERROR: Unable to Process Students");
+            }
+            else
+            {
+                DumpData();
+            }
         }
 
         // calculate students work line by line
@@ -151,10 +162,12 @@ namespace GeoApp
                 int student_score = GetStudentScore(answers);
 
                 Console.WriteLine("Score: " + student_score.ToString());
+                student_answer_bank[processed_students] = student_score.ToString() + "," + last_name + "," + first_name + "," + students_class + "," + school_id + "," + answers;
+                processed_students++;
             }
             else
             {
-                Console.WriteLine("ERROR!" + student_data.Length);
+                MessageBox.Show("ERROR: Unable to Process Student data:\n" + students_line);
             }
 
             return true;
@@ -196,6 +209,20 @@ namespace GeoApp
             score = (total_correct * 10000) + (priority_correct * 100) + (secondary_correct);
 
             return score;
+        }
+
+        // Dump results to respective files
+        public void DumpData()
+        {
+            // This needs to be sorted from largest to smallest!
+            // We also need to output this data to a file
+            individualTextBox.Text = String.Format("{0,6} | {1,20} | {2,20} | {3,20} | {4,20} | {5,40}" + System.Environment.NewLine, "SCORE", "FIRST NAME", "LAST NAME", "CLASS", "SCHOOL", "ANSWERS");
+            for (int i = 0; i < number_of_students; i++)
+            {
+                string[] std_data = student_answer_bank[i].Split(",".ToCharArray());
+                string write_this = String.Format("{0,-6} | {1,20} | {2,-20} | {3,20} | {4,-20} | {5,40}", std_data[0], std_data[1], std_data[2], std_data[3], std_data[4], std_data[5]);
+                individualTextBox.Text = (individualTextBox.Text + write_this+ System.Environment.NewLine);
+            }
         }
     }
 }
