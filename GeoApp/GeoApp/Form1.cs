@@ -168,6 +168,7 @@ namespace GeoApp
             else
             {
                 MessageBox.Show("ERROR: Unable to Process Student data:\n" + students_line);
+                return false;
             }
 
             return true;
@@ -214,15 +215,27 @@ namespace GeoApp
         // Dump results to respective files
         public void DumpData()
         {
+            sortByScore(student_answer_bank);
             // This needs to be sorted from largest to smallest!
             // We also need to output this data to a file
             individualTextBox.Text = String.Format("{0,6} | {1,20} | {2,20} | {3,20} | {4,20} | {5,40}" + System.Environment.NewLine, "SCORE", "FIRST NAME", "LAST NAME", "CLASS", "SCHOOL", "ANSWERS");
             for (int i = 0; i < number_of_students; i++)
             {
-                string[] std_data = student_answer_bank[i].Split(",".ToCharArray());
+                string[] std_data = student_answer_bank[i].Split(',');//single quotes for char, double for string so we don't need no extra function call
                 string write_this = String.Format("{0,-6} | {1,20} | {2,-20} | {3,20} | {4,-20} | {5,40}", std_data[0], std_data[1], std_data[2], std_data[3], std_data[4], std_data[5]);
                 individualTextBox.Text = (individualTextBox.Text + write_this+ System.Environment.NewLine);
             }
+        }
+
+        public void sortByScore(string[] arrayToSort)
+        {
+            string[] keyArray = new string[number_of_students];
+            for (int i = 0; i < number_of_students; i++)
+            {
+                string[] splittedString = arrayToSort[i].Split(',');
+                keyArray[i] = splittedString[0];
+            }
+            Array.Sort(keyArray, arrayToSort);
         }
     }
 }
