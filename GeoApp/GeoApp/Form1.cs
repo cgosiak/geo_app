@@ -185,8 +185,8 @@ namespace GeoApp
 
             // calculate score
             char[] student_answers = input_answers.ToCharArray();
-            char[] answer_key = test_key.ToCharArray();
-            char[] tie_break = tie_breaker_key.ToCharArray();
+            char[] answer_key = test_key.Split(",".ToCharArray())[4].ToCharArray();
+            char[] tie_break = tie_breaker_key.Split(",".ToCharArray())[4].ToCharArray();
 
             for (int i=0; i < 40; i++)
             {
