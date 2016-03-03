@@ -229,11 +229,11 @@ namespace GeoApp
 
         public void sortByScore(string[] arrayToSort)
         {
-            string[] keyArray = new string[number_of_students];
+            int[] keyArray = new int[number_of_students];
             for (int i = 0; i < number_of_students; i++)
             {
                 string[] splittedString = arrayToSort[i].Split(',');
-                keyArray[i] = splittedString[0];
+                keyArray[i] = Convert.ToInt32(splittedString[0]);
             }
             Array.Sort(keyArray, arrayToSort);
         }
