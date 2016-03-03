@@ -39,11 +39,13 @@
             this.individualTab = new System.Windows.Forms.TabPage();
             this.individualTextBox = new System.Windows.Forms.TextBox();
             this.teamTab = new System.Windows.Forms.TabPage();
+            this.teamTabTextBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.runProTab.SuspendLayout();
             this.results.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.individualTab.SuspendLayout();
+            this.teamTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -115,7 +117,7 @@
             this.calcScores.Name = "calcScores";
             this.calcScores.Size = new System.Drawing.Size(131, 32);
             this.calcScores.TabIndex = 0;
-            this.calcScores.Text = "Calcualte Scores";
+            this.calcScores.Text = "Calculate Scores";
             this.calcScores.UseVisualStyleBackColor = false;
             this.calcScores.Click += new System.EventHandler(this.calcScores_Click);
             // 
@@ -169,6 +171,8 @@
             // 
             // teamTab
             // 
+            this.teamTab.Controls.Add(this.teamTabTextBox);
+            this.teamTab.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.teamTab.Location = new System.Drawing.Point(4, 25);
             this.teamTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.teamTab.Name = "teamTab";
@@ -177,6 +181,19 @@
             this.teamTab.TabIndex = 1;
             this.teamTab.Text = "Team";
             this.teamTab.UseVisualStyleBackColor = true;
+            // 
+            // teamTabTextBox
+            // 
+            this.teamTabTextBox.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.teamTabTextBox.Location = new System.Drawing.Point(-1, 4);
+            this.teamTabTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.teamTabTextBox.Multiline = true;
+            this.teamTabTextBox.Name = "teamTabTextBox";
+            this.teamTabTextBox.ReadOnly = true;
+            this.teamTabTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.teamTabTextBox.Size = new System.Drawing.Size(558, 261);
+            this.teamTabTextBox.TabIndex = 1;
+            this.teamTabTextBox.WordWrap = false;
             // 
             // Form1
             // 
@@ -194,6 +211,8 @@
             this.tabControl2.ResumeLayout(false);
             this.individualTab.ResumeLayout(false);
             this.individualTab.PerformLayout();
+            this.teamTab.ResumeLayout(false);
+            this.teamTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -211,6 +230,7 @@
         private System.Windows.Forms.Button getFileButton;
         private System.Windows.Forms.ProgressBar progressOfApplicationBar;
         private System.Windows.Forms.TextBox individualTextBox;
+        private System.Windows.Forms.TextBox teamTabTextBox;
     }
 }
 
