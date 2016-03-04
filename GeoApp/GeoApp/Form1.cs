@@ -97,6 +97,7 @@ namespace GeoApp
                             input_file_available = true; // file is now available
                             fileLabel.Text = input_file_name;
                             calcScores.BackColor = Color.Green;
+                            getFileButton.BackColor = Color.Transparent;
                             setUpOutput();
                         }
                         else if (instance_amount < 7)
@@ -150,6 +151,10 @@ namespace GeoApp
                     // Perform the increment on the ProgressBar.
                     progressOfApplicationBar.PerformStep();
                 }
+                else
+                {
+                    break;
+                }
             }
 
             // Check if everyone was processed correctly
@@ -160,6 +165,8 @@ namespace GeoApp
             else
             {
                 DumpData();
+                calcScores.BackColor = Color.Firebrick;
+                getFileButton.BackColor = Color.Green;
             }
         }
 
@@ -181,6 +188,19 @@ namespace GeoApp
                 string answers = student_data[4];
                 int n_u_m_b_e_rC_o_r_r_e_c_t = 0;
                 int student_score = GetStudentScore(answers, ref n_u_m_b_e_rC_o_r_r_e_c_t);
+                if (student_score == -1)
+                {
+                    MessageBox.Show(last_name + ", " + first_name + " answer string does not match length of answer key. Score is assigned -1");
+
+                } else if (student_score == -2)
+                {
+                    MessageBox.Show("Tie breaker key length is shorter than the length of the answer key. Unable to process student data.");
+                    return false;
+                } else if (student_score == -3)
+                {
+                    MessageBox.Show("Answer key is shorter than tie breaker key. Unable to process student data.");
+                    return false;
+                }
 
                 //Console.WriteLine("Score: " + student_score.ToString());
                 student_answer_bank[processed_students] = student_score.ToString() + "," + last_name + "," + first_name + "," + students_class + "," + school_id + "," + answers + "," + n_u_m_b_e_rC_o_r_r_e_c_t.ToString();
@@ -209,7 +229,20 @@ namespace GeoApp
             char[] answer_key = test_key.Split(",".ToCharArray())[4].ToCharArray();
             char[] tie_break = tie_breaker_key.Split(",".ToCharArray())[4].ToCharArray();
 
-            for (int i=0; i < 40; i++)
+            if (answer_key.Length < tie_break.Length)
+            {
+                return -3;
+            }
+            if (answer_key.Length > tie_break.Length)
+            {
+                return -2;
+            }
+            if (student_answers.Length < answer_key.Length)
+            {
+                return -1;
+            }
+
+            for (int i=0; i < answer_key.Length; i++)
             {
                 if (student_answers[i] == answer_key[i])
                 {

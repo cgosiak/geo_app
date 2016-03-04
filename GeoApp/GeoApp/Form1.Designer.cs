@@ -87,6 +87,7 @@
             // 
             // getFileButton
             // 
+            this.getFileButton.BackColor = System.Drawing.Color.Green;
             this.getFileButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.getFileButton.Location = new System.Drawing.Point(217, 29);
             this.getFileButton.Margin = new System.Windows.Forms.Padding(2);
@@ -94,7 +95,7 @@
             this.getFileButton.Size = new System.Drawing.Size(336, 94);
             this.getFileButton.TabIndex = 2;
             this.getFileButton.Text = "Open File";
-            this.getFileButton.UseVisualStyleBackColor = true;
+            this.getFileButton.UseVisualStyleBackColor = false;
             this.getFileButton.Click += new System.EventHandler(this.getFileButton_Click);
             // 
             // fileLabel
@@ -113,7 +114,7 @@
             // calcScores
             // 
             this.calcScores.AutoSize = true;
-            this.calcScores.BackColor = System.Drawing.Color.Transparent;
+            this.calcScores.BackColor = System.Drawing.Color.Firebrick;
             this.calcScores.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.calcScores.Location = new System.Drawing.Point(217, 394);
             this.calcScores.Margin = new System.Windows.Forms.Padding(2);
