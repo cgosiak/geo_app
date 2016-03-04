@@ -18,8 +18,7 @@ namespace GeoApp
         public bool input_file_available = false; // Does not become true until user selects a file to read from
         public string input_file_name; // The input text file to parse for scores
         public string outputFilePath; //
-        public const string INDIV_FILE_NAME = "individualScores.txt";
-        public const string TEAM_FILE_NAME = "teamScores.txt";
+
         public string test_key; // This houses the test key for this particular run
         public string tie_breaker_key; // Houses the string for a tie_breaker
         public string[] student_answer_bank = new string[1000]; // Keeps all student answers in memory
@@ -27,6 +26,8 @@ namespace GeoApp
         public int number_of_students; // Total amount of students
         public int processed_students; // Current amt of processed student scores.
 
+        public const string INDIV_FILE_NAME = "individualScores.txt";
+        public const string TEAM_FILE_NAME = "teamScores.txt";
         public const string INDIV_OUT_HEADER_ONE = "\t\t\tBemidji State University";
         public const string INDIV_OUT_HEADER_TWO = "\t\tJunior Division Scores With Tiebreakers";
         public const string TEAM_OUT_HEADER_ONE = "\t\t\tBemidji State University";
