@@ -69,35 +69,39 @@ namespace GeoApp
                             if (current_line.Contains("JUNIORTESTKEY"))
                             {
                                 test_key = current_line;
-                                instance_amount++;
+                                instance_amount = instance_amount + 1;
                             }
                             else if (current_line.Contains("JUNIORTIEBREAKER"))
                             {
                                 tie_breaker_key = current_line;
-                                instance_amount++;
+                                instance_amount = instance_amount + 2;
                             }
-                            else
+                            else if (! String.IsNullOrWhiteSpace(current_line))
                             {
                                 student_answer_bank[number_of_students] = current_line;
                                 number_of_students++;
-                                if (instance_amount == 2)
-                                {
-                                    instance_amount++;
-                                }
+                                instance_amount = instance_amount | 4;
                             }
                         }
-                        if (instance_amount == 3)
+                        if (instance_amount == 7)
                         {
                             input_file_name = input_file_dialogue.FileName.ToString(); // sets the usable file
                             input_file_available = true; // file is now available
                             fileLabel.Text = input_file_name;
                             calcScores.BackColor = Color.Green;
                         }
-                        else
+                        if ((instance_amount & 1) != 1)
                         {
-                            MessageBox.Show("ERROR: Invalid Read File!");
+                            MessageBox.Show("No test key found. File must have a line with \"JUNIORTESTKEY\"");
                         }
-
+                        if ((instance_amount & 2) != 2)
+                        {
+                            MessageBox.Show("No tie breaker found. File must have a line with \"JUNIORTIEBREAKER\"");
+                        }
+                        if ((instance_amount & 4) != 4)
+                        {
+                            MessageBox.Show("No student entries found...");
+                        }
                         my_stream.Close();
                     }
                 }
@@ -221,11 +225,11 @@ namespace GeoApp
             sortBySchool();
             //TODO We also need to output this data to a file
             //TODO also need header for both outputs that includes like university name and what division, essentially what we read in from the input file
-            individualTextBox.Text = String.Format("{0,6} | {1,20} | {2,-20} | {3,20} | {4,-20} | {5,40}" + Environment.NewLine, "SCORE", "LAST NAME", "FIRST NAME", "CLASS", "SCHOOL", "ANSWERS");
+            individualTextBox.Text = String.Format("{0,6} | {1,20} | {2,-20} | {3,20} | {4,-20} | {5,-40}" + Environment.NewLine, "SCORE", "LAST NAME", "FIRST NAME", "CLASS", "SCHOOL", "ANSWERS");
             for (int i = number_of_students-1; i >= 0; i--)//goes from top to bottom because not dynamic size means reverse doesn't work
             {
                 string[] std_data = student_answer_bank[i].Split(',');//single quotes for char, double for string so we don't need no extra function call
-                string write_this = String.Format("{0,-6} | {1,20} | {2,-20} | {3,20} | {4,-20} | {5,40}", std_data[0], std_data[1], std_data[2], std_data[3], std_data[4], std_data[5]);
+                string write_this = String.Format("{0,-6} | {1,20} | {2,-20} | {3,20} | {4,-20} | {5,-40}", std_data[0], std_data[1], std_data[2], std_data[3], std_data[4], std_data[5]);
                 individualTextBox.Text += write_this+ Environment.NewLine;
             }
 

@@ -54,7 +54,7 @@
             this.tabControl1.Controls.Add(this.results);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(9, 10);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(564, 323);
@@ -67,9 +67,9 @@
             this.runProTab.Controls.Add(this.fileLabel);
             this.runProTab.Controls.Add(this.calcScores);
             this.runProTab.Location = new System.Drawing.Point(4, 25);
-            this.runProTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.runProTab.Margin = new System.Windows.Forms.Padding(2);
             this.runProTab.Name = "runProTab";
-            this.runProTab.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.runProTab.Padding = new System.Windows.Forms.Padding(2);
             this.runProTab.Size = new System.Drawing.Size(556, 294);
             this.runProTab.TabIndex = 0;
             this.runProTab.Text = "Main";
@@ -79,7 +79,7 @@
             // 
             this.progressOfApplicationBar.BackColor = System.Drawing.SystemColors.Menu;
             this.progressOfApplicationBar.Location = new System.Drawing.Point(4, 258);
-            this.progressOfApplicationBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.progressOfApplicationBar.Margin = new System.Windows.Forms.Padding(2);
             this.progressOfApplicationBar.Name = "progressOfApplicationBar";
             this.progressOfApplicationBar.Size = new System.Drawing.Size(413, 32);
             this.progressOfApplicationBar.TabIndex = 3;
@@ -87,7 +87,7 @@
             // getFileButton
             // 
             this.getFileButton.Location = new System.Drawing.Point(236, 92);
-            this.getFileButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.getFileButton.Margin = new System.Windows.Forms.Padding(2);
             this.getFileButton.Name = "getFileButton";
             this.getFileButton.Size = new System.Drawing.Size(94, 24);
             this.getFileButton.TabIndex = 2;
@@ -113,7 +113,7 @@
             this.calcScores.AutoSize = true;
             this.calcScores.BackColor = System.Drawing.Color.Transparent;
             this.calcScores.Location = new System.Drawing.Point(422, 258);
-            this.calcScores.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.calcScores.Margin = new System.Windows.Forms.Padding(2);
             this.calcScores.Name = "calcScores";
             this.calcScores.Size = new System.Drawing.Size(131, 32);
             this.calcScores.TabIndex = 0;
@@ -125,9 +125,9 @@
             // 
             this.results.Controls.Add(this.tabControl2);
             this.results.Location = new System.Drawing.Point(4, 25);
-            this.results.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.results.Margin = new System.Windows.Forms.Padding(2);
             this.results.Name = "results";
-            this.results.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.results.Padding = new System.Windows.Forms.Padding(2);
             this.results.Size = new System.Drawing.Size(556, 294);
             this.results.TabIndex = 1;
             this.results.Text = "Results";
@@ -138,7 +138,7 @@
             this.tabControl2.Controls.Add(this.individualTab);
             this.tabControl2.Controls.Add(this.teamTab);
             this.tabControl2.Location = new System.Drawing.Point(-3, 2);
-            this.tabControl2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl2.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
             this.tabControl2.Size = new System.Drawing.Size(564, 297);
@@ -150,7 +150,7 @@
             this.individualTab.Location = new System.Drawing.Point(4, 25);
             this.individualTab.Margin = new System.Windows.Forms.Padding(0);
             this.individualTab.Name = "individualTab";
-            this.individualTab.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.individualTab.Padding = new System.Windows.Forms.Padding(2);
             this.individualTab.Size = new System.Drawing.Size(556, 268);
             this.individualTab.TabIndex = 0;
             this.individualTab.Text = "Individual";
@@ -160,7 +160,7 @@
             // 
             this.individualTextBox.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.individualTextBox.Location = new System.Drawing.Point(-3, 5);
-            this.individualTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.individualTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.individualTextBox.Multiline = true;
             this.individualTextBox.Name = "individualTextBox";
             this.individualTextBox.ReadOnly = true;
@@ -174,9 +174,9 @@
             this.teamTab.Controls.Add(this.teamTabTextBox);
             this.teamTab.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.teamTab.Location = new System.Drawing.Point(4, 25);
-            this.teamTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.teamTab.Margin = new System.Windows.Forms.Padding(2);
             this.teamTab.Name = "teamTab";
-            this.teamTab.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.teamTab.Padding = new System.Windows.Forms.Padding(2);
             this.teamTab.Size = new System.Drawing.Size(556, 268);
             this.teamTab.TabIndex = 1;
             this.teamTab.Text = "Team";
@@ -201,7 +201,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(582, 342);
             this.Controls.Add(this.tabControl1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Geo Competition";
             this.tabControl1.ResumeLayout(false);
