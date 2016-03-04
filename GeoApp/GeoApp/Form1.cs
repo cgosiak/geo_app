@@ -17,12 +17,20 @@ namespace GeoApp
         // Public Variables
         public bool input_file_available = false; // Does not become true until user selects a file to read from
         public string input_file_name; // The input text file to parse for scores
+        public string outputFilePath; //
+        public const string INDIV_FILE_NAME = "individualScores.txt";
+        public const string TEAM_FILE_NAME = "teamScores.txt";
         public string test_key; // This houses the test key for this particular run
         public string tie_breaker_key; // Houses the string for a tie_breaker
         public string[] student_answer_bank = new string[1000]; // Keeps all student answers in memory
         public List<string[]> schoolStuff = new List<string[]>();
         public int number_of_students; // Total amount of students
         public int processed_students; // Current amt of processed student scores.
+
+        public const string INDIV_OUT_HEADER_ONE = "\t\t\tBemidji State University";
+        public const string INDIV_OUT_HEADER_TWO = "\t\tJunior Division Scores With Tiebreakers";
+        public const string TEAM_OUT_HEADER_ONE = "\t\t\tBemidji State University";
+        public const string TEAM_OUT_HEADER_TWO = "\t\t\tJunior Division Team Scores\n";
 
         public Form1()
         {
@@ -89,18 +97,25 @@ namespace GeoApp
                             input_file_available = true; // file is now available
                             fileLabel.Text = input_file_name;
                             calcScores.BackColor = Color.Green;
+                            setUpOutput();
                         }
-                        if ((instance_amount & 1) != 1)
+                        else if (instance_amount < 7)
                         {
-                            MessageBox.Show("No test key found. File must have a line with \"JUNIORTESTKEY\"");
-                        }
-                        if ((instance_amount & 2) != 2)
+                            if ((instance_amount & 1) != 1)
+                            {
+                                MessageBox.Show("No test key found. File must have a line with \"JUNIORTESTKEY\"");
+                            }
+                            if ((instance_amount & 2) != 2)
+                            {
+                                MessageBox.Show("No tie breaker found. File must have a line with \"JUNIORTIEBREAKER\"");
+                            }
+                            if ((instance_amount & 4) != 4)
+                            {
+                                MessageBox.Show("No student entries found...");
+                            }
+                        } else
                         {
-                            MessageBox.Show("No tie breaker found. File must have a line with \"JUNIORTIEBREAKER\"");
-                        }
-                        if ((instance_amount & 4) != 4)
-                        {
-                            MessageBox.Show("No student entries found...");
+                            MessageBox.Show("More than one test key or tie breaker found");
                         }
                         my_stream.Close();
                     }
@@ -223,8 +238,6 @@ namespace GeoApp
         {
             sortByScore();
             sortBySchool();
-            //TODO We also need to output this data to a file
-            //TODO also need header for both outputs that includes like university name and what division, essentially what we read in from the input file
             individualTextBox.Text = String.Format("{0,6} | {1,20} | {2,-20} | {3,20} | {4,-20} | {5,-40}" + Environment.NewLine, "SCORE", "LAST NAME", "FIRST NAME", "CLASS", "SCHOOL", "ANSWERS");
             for (int i = number_of_students-1; i >= 0; i--)//goes from top to bottom because not dynamic size means reverse doesn't work
             {
@@ -264,6 +277,12 @@ namespace GeoApp
             }
             teamTabTextBox.Text += String.Format(Environment.NewLine + Environment.NewLine + "====================================" + Environment.NewLine + "Top School(s): {0,10}" + Environment.NewLine + "Score: {1,10}", topSchoolCode, topSchoolScore);
             schoolStuff = new List<string[]>();//resets school stuff just in case user reads in another file without closing and reopening
+
+            string individualOutputFileName = outputFilePath + INDIV_FILE_NAME;
+            string teamOutputFileName = outputFilePath + TEAM_FILE_NAME;
+            File.WriteAllText(individualOutputFileName, INDIV_OUT_HEADER_ONE + Environment.NewLine + INDIV_OUT_HEADER_TWO + Environment.NewLine + individualTextBox.Text);//simplest method for writing to file I have ever seen
+            File.WriteAllText(teamOutputFileName, TEAM_OUT_HEADER_ONE + Environment.NewLine + TEAM_OUT_HEADER_TWO + Environment.NewLine + teamTabTextBox.Text);
+
         }
 
         public void sortByScore()//hardcoded to sort our global answer_bank array
@@ -318,6 +337,14 @@ namespace GeoApp
                 Array.Sort(tempKeys, schoolStuff[i]);
                 Array.Reverse(schoolStuff[i]);//reverse so in descending order
             }
+        }
+
+        public void setUpOutput()
+        {
+            int cutPosition = input_file_name.LastIndexOf('\\');
+            char[] newPath = new char[++cutPosition];
+            input_file_name.CopyTo(0,newPath,0,cutPosition);
+            outputFilePath = new string(newPath);
         }
     }
 }
